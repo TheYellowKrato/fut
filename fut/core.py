@@ -1608,6 +1608,18 @@ class Core(object):
         self.pin.send(events)
 
         return rc
+    
+     def sbsStart(self, challenge_id):
+        method = 'POST'
+        url = 'sbs/challenge/%s' % challenge_id
+
+        rc = self.__request__(method, url)
+
+        # pinEvents
+        events = [self.pin.event('page_view', 'SBC - Squad')]
+        self.pin.send(events)
+
+        return rc
 
     def objectives(self, scope='all'):
         method = 'GET'
